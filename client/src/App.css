@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.header {
+  width: 100vw;
+  height: 10vh;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.footer {
+  width: 100vw;
+  height: 5vh;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.content {
+  width: 100vw;
+  height: 85vh;
+  background-color: gainsboro;
+  color: blue;
+  text-align: center;
+}

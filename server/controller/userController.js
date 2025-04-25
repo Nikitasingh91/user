@@ -37,8 +37,8 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
     try {
         const { name, email, password, role } = req.body;
-        const updateuser = User.findOneAndUpdate({ email }, { name, password, role }, { new: true })
-        res.status(200).json(updateuser)
+        const updateuser = User.findOneAndUpdate({ email }, { name }, { new: true })
+        res.status(200).json({ message: "user updated" })
 
 
 
@@ -54,12 +54,16 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const email = req.params.email;
-        const deleteUser = User.deleteOne({ email })
-        res.status(200).json(deleteUser);
-    }
-    catch (err) {
-        console.log(err);
+        const deleteResult = await User.deleteOne({ email });
 
+        if (deleteResult.deletedCount > 0) {
+            res.status(200).json({ message: "User deleted" });
+        } else {
+            res.status(404).json({ message: "User not found" });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "Server error" });
     }
-}
+};
 module.exports = { getAllUsers, getUser, createUser, updateUser, deleteUser }
